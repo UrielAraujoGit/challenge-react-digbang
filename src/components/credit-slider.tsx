@@ -20,6 +20,12 @@ const CreditSlider: FC<CreditSliderProps> = ({
   // the value of the slider will always be valid, but the value of the input could be not valid
   const [inputValue, setInputValue] = useState("");
   const [value, setValue] = useState(0);
+
+  const saveValue = (v: number) => {
+    checkValidity(v);
+    setValue(v);
+  };
+
   const [lastInputValidityCheck, setLastInputValidityCheck] = useState("");
 
   const formatNumber = (n: number | Array<number>) => {
@@ -38,9 +44,8 @@ const CreditSlider: FC<CreditSliderProps> = ({
 
   const handleSetData = (n: number | null) => {
     if (n !== null) {
-      setValue(n);
+      saveValue(n);
       setInputValue(String(n));
-      checkValidity(n);
       onChange(n);
     }
   };
@@ -55,7 +60,7 @@ const CreditSlider: FC<CreditSliderProps> = ({
     if (!element.validity.valid) {
       if (lastInputValidityCheck !== value) {
         element.reportValidity();
-        setValue(0);
+        saveValue(0);
       }
       return;
     }

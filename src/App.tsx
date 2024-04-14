@@ -1,10 +1,16 @@
 import { useState } from "react";
 import CreditSlider from "./components/credit-slider";
+import { CreditDto } from "./schemas/credit-dto.type";
+
+// TODO: memoize fn props
 
 function App() {
-  const [amount, setAmount] = useState({ value: 0, valid: false });
+  const [amount, setAmount] = useState<CreditDto>({ value: 0, valid: false });
 
-  const [payments, setPayments] = useState({ value: 0, valid: false });
+  const [payments, setPayments] = useState<CreditDto>({
+    value: 0,
+    valid: false,
+  });
 
   const disabledBtns = !amount.valid || !payments.valid;
 
@@ -16,9 +22,9 @@ function App() {
           min={5000}
           max={50000}
           title="monto total"
-          onChange={(n) =>
-            setAmount((prev) => ({ valid: prev.valid, value: n }))
-          }
+          onChange={(n) => {
+            setAmount((prev) => ({ valid: prev.valid, value: n }));
+          }}
           validityChange={(valid) => {
             setAmount((prev) => ({ valid, value: prev.value }));
           }}
