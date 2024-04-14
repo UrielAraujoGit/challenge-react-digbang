@@ -6,6 +6,7 @@ interface CreditSliderProps {
   max: number;
   title: string;
   onChange: (n: number) => void;
+  validityChange: (valid: boolean) => void;
 }
 
 const CreditSlider: FC<CreditSliderProps> = ({
@@ -13,8 +14,9 @@ const CreditSlider: FC<CreditSliderProps> = ({
   max,
   title,
   onChange,
+  validityChange,
 }: CreditSliderProps) => {
-  // this state handles the values of the input number  as well as the value of the slider
+  // this state handles the values of the input number
   // the value of the slider will always be valid, but the value of the input could be not valid
   const [inputValue, setInputValue] = useState("");
   const [value, setValue] = useState(0);
@@ -29,10 +31,16 @@ const CreditSlider: FC<CreditSliderProps> = ({
     return n;
   };
 
+  const checkValidity = (n: number) => {
+    const isValid = n >= min && n <= max;
+    validityChange(isValid);
+  };
+
   const handleSetData = (n: number | null) => {
     if (n !== null) {
       setValue(n);
       setInputValue(String(n));
+      checkValidity(n);
       onChange(n);
     }
   };

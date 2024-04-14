@@ -2,8 +2,11 @@ import { useState } from "react";
 import CreditSlider from "./components/credit-slider";
 
 function App() {
-  const [amount, setAmount] = useState(0);
-  const [payments, setPayments] = useState(0);
+  const [amount, setAmount] = useState({ value: 0, valid: false });
+
+  const [payments, setPayments] = useState({ value: 0, valid: false });
+
+  const disabledBtns = !amount.valid || !payments.valid;
 
   return (
     <>
@@ -13,10 +16,39 @@ function App() {
           min={5000}
           max={50000}
           title="monto total"
-          onChange={setAmount}
+          onChange={(n) =>
+            setAmount((prev) => ({ valid: prev.valid, value: n }))
+          }
+          validityChange={(valid) => {
+            setAmount((prev) => ({ valid, value: prev.value }));
+          }}
         />
 
-        <CreditSlider min={3} max={24} title="plazo" onChange={setPayments} />
+        <CreditSlider
+          min={3}
+          max={24}
+          title="plazo"
+          onChange={(n) => {
+            setPayments((prev) => ({ value: n, valid: prev.valid }));
+          }}
+          validityChange={(valid) => {
+            setPayments((prev) => ({ value: prev.value, valid }));
+          }}
+        />
+      </div>
+      <div>
+        <button
+          onClick={(e) => console.log("obt cred")}
+          disabled={disabledBtns}
+        >
+          Obtené crédito
+        </button>
+        <button
+          onClick={(e) => console.log("ver coutas")}
+          disabled={disabledBtns}
+        >
+          Ver detalle de cuotas
+        </button>
       </div>
     </>
   );
