@@ -12,6 +12,22 @@ function App() {
     valid: false,
   });
 
+  const paymentsAmout =
+    amount.value && payments.value
+      ? (amount.value / payments.value).toFixed(2)
+      : null;
+
+  const openModalCredit = (loan: number, installments: number) =>
+    alert("¡Crédito solicitado con éxito!");
+
+  const openModalPaymentsDetails = (
+    loan: number,
+    installments: number,
+    paymentsAmout: number
+  ) => {
+    alert(`el valor de cada cuota es: $${installments}`);
+  };
+
   const disabledBtns = !amount.valid || !payments.valid;
 
   return (
@@ -43,14 +59,25 @@ function App() {
         />
       </div>
       <div>
+        <h6>
+          Cuotas fijas por mes <span>${paymentsAmout || "-"}</span>
+        </h6>
+      </div>
+      <div>
         <button
-          onClick={(e) => console.log("obt cred")}
+          onClick={(e) => openModalCredit(amount.value, payments.value)}
           disabled={disabledBtns}
         >
           Obtené crédito
         </button>
         <button
-          onClick={(e) => console.log("ver coutas")}
+          onClick={(e) =>
+            openModalPaymentsDetails(
+              amount.value,
+              payments.value,
+              Number(paymentsAmout)
+            )
+          }
           disabled={disabledBtns}
         >
           Ver detalle de cuotas
