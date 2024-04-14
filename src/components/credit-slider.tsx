@@ -16,7 +16,8 @@ const CreditSlider: FC<CreditSliderProps> = ({
 }: CreditSliderProps) => {
   // this state handles the values of the input number  as well as the value of the slider
   // the value of the slider will always be valid, but the value of the input could be not valid
-  const [data, setData] = useState({ input: "", value: 0 });
+  const [inputValue, setInputValue] = useState("");
+  const [value, setValue] = useState(0);
   const [lastInputValidityCheck, setLastInputValidityCheck] = useState("");
 
   const formatNumber = (n: number | Array<number>) => {
@@ -30,20 +31,23 @@ const CreditSlider: FC<CreditSliderProps> = ({
 
   const handleSetData = (n: number | null) => {
     if (n !== null) {
-      setData({ input: String(n), value: n });
+      setValue(n);
+      setInputValue(String(n));
       onChange(n);
     }
   };
 
   const handleFocusOutInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const element = e.currentTarget;
-    setLastInputValidityCheck(element.value);
+    const value = e.currentTarget.value;
 
-    // if the value of the input is not valid, it shouldn't send that value to the slider 
+    setInputValue(value);
+    setLastInputValidityCheck(value);
+    // if the value of the input is not valid, it shouldn't send that value to the slider
     if (!element.validity.valid) {
-      if (lastInputValidityCheck !== element.value) {
+      if (lastInputValidityCheck !== value) {
         element.reportValidity();
-        setData({ ...data, value: 0 });
+        setValue(0);
       }
       return;
     }
@@ -52,7 +56,7 @@ const CreditSlider: FC<CreditSliderProps> = ({
   };
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, input: e.currentTarget.value });
+    setInputValue(e.currentTarget.value);
   };
 
   return (
@@ -64,7 +68,7 @@ const CreditSlider: FC<CreditSliderProps> = ({
             type="number"
             min={min}
             max={max}
-            value={data.input}
+            value={inputValue}
             onBlur={handleFocusOutInput}
             onChange={handleChangeInput}
           />
@@ -73,7 +77,7 @@ const CreditSlider: FC<CreditSliderProps> = ({
           <Slider
             min={min}
             max={max}
-            value={data.value}
+            value={value}
             onChange={(e) => handleSetData(formatNumber(e))}
           />
         </div>
