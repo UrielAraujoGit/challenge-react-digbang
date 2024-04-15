@@ -11,7 +11,7 @@ const ModalContainer: FC<ModalContainerProps> = ({ children, closeModal }) => {
       <div className="bg-white relative w-full max-w-xs  p-3 sm:p-5 sm:max-w-md max-h-[90svh] overflow-auto">
         <div className="sticky top-0 right-0">
           <button
-            onClick={(e) => {
+            onClick={() => {
               closeModal?.();
             }}
             className="absolute right-0 ml-auto p-2 font-bold"

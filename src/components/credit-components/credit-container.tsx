@@ -73,14 +73,14 @@ const CreditContainer: FC<CreditContainerProps> = ({
         </div>
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={(e) => openModalCredit(amount.value, payments.value)}
+            onClick={() => openModalCredit(amount.value, payments.value)}
             disabled={disabledBtns}
             className="bg-teal-500 py-3 text-center text-xl uppercase font-bold flex-grow disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Obtené crédito
           </button>
           <button
-            onClick={(e) =>
+            onClick={() =>
               openModalPaymentsDetails(
                 amount.value,
                 payments.value,
