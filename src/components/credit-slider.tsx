@@ -1,5 +1,5 @@
 import Slider from "rc-slider";
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 
 interface CreditSliderProps {
   min: number;
@@ -22,13 +22,12 @@ const CreditSlider: FC<CreditSliderProps> = ({
   // the value of the slider will always be valid, but the value of the input could be not valid
   const [inputValue, setInputValue] = useState("");
   const [value, setValue] = useState(0);
+  const [lastInputValidityCheck, setLastInputValidityCheck] = useState("");
 
   const saveValue = (v: number) => {
     checkValidity(v);
     setValue(v);
   };
-
-  const [lastInputValidityCheck, setLastInputValidityCheck] = useState("");
 
   const formatNumber = (n: number | Array<number>) => {
     if (typeof n !== "number") {
@@ -42,6 +41,10 @@ const CreditSlider: FC<CreditSliderProps> = ({
   const checkValidity = (n: number) => {
     const isValid = n >= min && n <= max;
     validityChange(isValid);
+    if (!isValid) {
+      console.warn("the new credit-slider value is not valid");
+      onChange(0);
+    }
   };
 
   const handleSetData = (n: number | null) => {
@@ -74,6 +77,10 @@ const CreditSlider: FC<CreditSliderProps> = ({
     setInputValue(e.currentTarget.value);
   };
 
+  useEffect(() => {
+    setLastInputValidityCheck(String(value));
+  }),
+    [value];
   return (
     <>
       <div>

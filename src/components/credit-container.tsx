@@ -67,7 +67,7 @@ const CreditContainer: FC<CreditContainerProps> = ({
         </div>
         <div>
           <h6 className="bg-primary-dark font-bold uppercase flex justify-between px-8 py-3 items-center">
-            <span className="text-lg ">Cuotas fijas por mes</span>{" "}
+            <span className="text-lg ">Cuotas fijas por mes</span>
             <span className="text-4xl">${paymentsAmout || "-"}</span>
           </h6>
         </div>
