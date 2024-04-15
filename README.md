@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# Challenge Digbang - React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository is an implementation of the [Digbang React challenge](https://github.com/digbang/ejercicio-react)
 
-Currently, two official plugins are available:
+for this challenge I used the following technologies:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [ReactJS](https://es.react.dev/) as a tool for the creation of the user interface
+- [Typescript](https://www.typescriptlang.org/) as a developer tool for enhance javascript developer experience
+- [rc-slider](https://github.com/react-component/slider) as a library that exposes a slider component
+- [TailwindCss](https://tailwindcss.com/) I chose Tailwind CSS because it's a tool that allows working with CSS in an organized, efficient manner, and it's easily extensible.
+- [ViteJS](https://vitejs.dev/) as the JavaScript bundler
 
-## Expanding the ESLint configuration
+## How to run this challenge ?
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Clone this repository
 
-- Configure the top-level `parserOptions` property like this:
+git clone https://github.com/UrielAraujoGit/challenge-react-digbang.git
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# Navigate to project directory
+
+cd challenge-react-digban
+
+# Install dependencies
+
+- [npm](https://docs.npmjs.com/) ```bash
+  npm install
+
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Development Setup
+```bash
+  npm run dev
+```
+
+
+### Prerequisites
+
+- Install [Node.js](https://nodejs.org/en) which includes [Node Package Manager][npm](https://www.npmjs.com/)
