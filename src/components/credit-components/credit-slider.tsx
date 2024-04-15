@@ -78,7 +78,9 @@ const CreditSlider: FC<CreditSliderProps> = ({
   };
 
   useEffect(() => {
-    setLastInputValidityCheck(String(value));
+    if (value) {
+      setLastInputValidityCheck(String(value));
+    }
   }),
     [value];
   return (

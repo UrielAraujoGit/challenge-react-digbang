@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { CreditDto } from "../schemas/credit-dto.type";
+import { CreditDto } from "./schemas/credit-dto.type";
 import CreditSlider from "./credit-slider";
 
 interface CreditContainerProps {
@@ -7,7 +7,7 @@ interface CreditContainerProps {
   openModalPaymentsDetails: (
     loan: number,
     installments: number,
-    paymentsAmout: number
+    paymentsAmount: number
   ) => void;
 }
 
@@ -22,7 +22,7 @@ const CreditContainer: FC<CreditContainerProps> = ({
     valid: false,
   });
 
-  const paymentsAmout =
+  const paymentsAmount =
     amount.value && payments.value
       ? (amount.value / payments.value).toFixed(2)
       : null;
@@ -66,16 +66,16 @@ const CreditContainer: FC<CreditContainerProps> = ({
           </div>
         </div>
         <div>
-          <h6 className="bg-primary-dark font-bold uppercase flex justify-between px-8 py-3 items-center">
+          <h6 className="bg-primary-dark font-bold uppercase flex flex-wrap justify-between px-8 py-3 items-center">
             <span className="text-lg ">Cuotas fijas por mes</span>
-            <span className="text-4xl">${paymentsAmout || "-"}</span>
+            <span className="text-4xl">${paymentsAmount || "-"}</span>
           </h6>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
             onClick={(e) => openModalCredit(amount.value, payments.value)}
             disabled={disabledBtns}
-            className="bg-teal-500 py-3 text-center text-xl uppercase font-bold flex-grow"
+            className="bg-teal-500 py-3 text-center text-xl uppercase font-bold flex-grow disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Obtené crédito
           </button>
@@ -84,11 +84,11 @@ const CreditContainer: FC<CreditContainerProps> = ({
               openModalPaymentsDetails(
                 amount.value,
                 payments.value,
-                Number(paymentsAmout)
+                Number(paymentsAmount)
               )
             }
             disabled={disabledBtns}
-            className="bg-primary-btn uppercase font-bold text-xs w-1/3 md:w-1/4"
+            className="bg-primary-btn uppercase py-2 font-bold text-xs w-full sm:w-1/3 md:w-1/4 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Ver detalle de cuotas
           </button>
