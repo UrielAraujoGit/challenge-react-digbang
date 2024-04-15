@@ -81,8 +81,8 @@ const CreditSlider: FC<CreditSliderProps> = ({
     if (value) {
       setLastInputValidityCheck(String(value));
     }
-  }),
-    [value];
+  }, [value]);
+
   return (
     <>
       <div>
