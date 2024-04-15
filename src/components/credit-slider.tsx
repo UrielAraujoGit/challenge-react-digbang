@@ -1,5 +1,5 @@
 import Slider from "rc-slider";
-import { FC, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 
 interface CreditSliderProps {
   min: number;
@@ -7,6 +7,7 @@ interface CreditSliderProps {
   title: string;
   onChange: (n: number) => void;
   validityChange: (valid: boolean) => void;
+  prefix?: ReactNode;
 }
 
 const CreditSlider: FC<CreditSliderProps> = ({
@@ -15,6 +16,7 @@ const CreditSlider: FC<CreditSliderProps> = ({
   title,
   onChange,
   validityChange,
+  prefix,
 }: CreditSliderProps) => {
   // this state handles the values of the input number
   // the value of the slider will always be valid, but the value of the input could be not valid
@@ -75,8 +77,8 @@ const CreditSlider: FC<CreditSliderProps> = ({
   return (
     <>
       <div>
-        <div>
-          <h6>{title}</h6>
+        <div className="flex justify-between pb-5">
+          <h6 className="uppercase">{title}</h6>
           <input
             type="number"
             min={min}
@@ -84,15 +86,24 @@ const CreditSlider: FC<CreditSliderProps> = ({
             value={inputValue}
             onBlur={handleFocusOutInput}
             onChange={handleChangeInput}
+            className="bg-primary-default border border-white text-white font-bold text-center min-w-28"
           />
         </div>
-        <div>
+        <div className="px-10">
           <Slider
             min={min}
             max={max}
             value={value}
             onChange={(e) => handleSetData(formatNumber(e))}
           />
+        </div>
+        <div className="flex justify-between ">
+          <p className="text-center min-w-14">
+            {prefix} {min}
+          </p>
+          <p className="text-center min-w-14">
+            {prefix} {max}
+          </p>
         </div>
       </div>
     </>

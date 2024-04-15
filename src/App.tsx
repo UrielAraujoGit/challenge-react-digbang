@@ -16,10 +16,14 @@ function App() {
 
   return (
     <>
-      <CreditContainer
-        openModalCredit={openModalCredit}
-        openModalPaymentsDetails={openModalPaymentsDetails}
-      ></CreditContainer>
+      <section className="bg-primary-light p-11 flex justify-center">
+        <div className="w-full max-w-full md:max-w-xl lg:max-w-xl 2xl:max-w-3xl">
+          <CreditContainer
+            openModalCredit={openModalCredit}
+            openModalPaymentsDetails={openModalPaymentsDetails}
+          ></CreditContainer>
+        </div>
+      </section>
     </>
   );
 }
