@@ -22,17 +22,19 @@ cd challenge-react-digban
 
 # Install dependencies
 
-- [npm](https://docs.npmjs.com/) ```bash
+- [npm](https://docs.npmjs.com/)
+
+```bash
   npm install
 
 ```
 
 ## Development Setup
+
 ```bash
   npm run dev
 ```
 
-
 ### Prerequisites
 
-- Install [Node.js](https://nodejs.org/en) which includes [Node Package Manager][npm](https://www.npmjs.com/)
+- Install [Node.js](https://nodejs.org/en) which includes [Node Package Manager](https://www.npmjs.com/)
