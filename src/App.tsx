@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { ReactNode, useState } from "react";
+import CreditContainer from "./components/credit-components/credit-container";
+import ModalCredit from "./components/credit-components/credit-modal-components/modal-credit";
+import ModalContainer from "./components/modal-component";
+import ModalPaymentDetails from "./components/credit-components/credit-modal-components/modal-payment-details";
+
+// TODO: memoize fn props
 
 function App() {
-  const [count, setCount] = useState(0)
+  const openModalCredit = (loan: number, installments: number) => {
+    const modalCredit = (
+      <ModalCredit loan={loan} installments={installments}></ModalCredit>
+    );
+    setModal(modalCredit);
+  };
+
+  const openModalPaymentsDetails = (
+    loan: number,
+    installments: number,
+    paymentsAmount: number
+  ) => {
+    const modalPaymentDetails = (
+      <ModalPaymentDetails
+        total={loan}
+        installments={installments}
+        paymentsAmount={paymentsAmount}
+      ></ModalPaymentDetails>
+    );
+    setModal(modalPaymentDetails);
+  };
+
+  const [modal, setModal] = useState<ReactNode | null>(null);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <section className="bg-primary-light p-3 sm:p-8 md:p-11 flex justify-center min-h-svh items-center bg-gradient-to-b from-primary-light to-primary-default relative">
+        <div className="w-full max-w-full md:max-w-xl lg:max-w-xl 2xl:max-w-3xl z-0">
+          <CreditContainer
+            openModalCredit={openModalCredit}
+            openModalPaymentsDetails={openModalPaymentsDetails}
+          ></CreditContainer>
+        </div>
+
+        {modal ? (
+          <ModalContainer closeModal={() => setModal(null)}>
+            {modal}
+          </ModalContainer>
+        ) : null}
+      </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
