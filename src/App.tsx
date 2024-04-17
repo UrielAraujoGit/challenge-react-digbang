@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import CreditContainer from "./components/credit-components/credit-container";
 import ModalCredit from "./components/credit-components/credit-modal-components/modal-credit";
-import ModalContainer from "./components/modal-component";
+import ModalContainer from "./components/modal-container";
 import ModalPaymentDetails from "./components/credit-components/credit-modal-components/modal-payment-details";
 
 // TODO: memoize fn props
