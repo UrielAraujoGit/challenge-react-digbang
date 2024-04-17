@@ -39,8 +39,6 @@ cd challenge-react-digban
 
 - Install [Node.js](https://nodejs.org/en) which includes [Node Package Manager](https://www.npmjs.com/)
 
-
-
 # Developer Notes
 
 I would like to mention some of the choices regarding this project.
@@ -49,6 +47,7 @@ I would like to mention some of the choices regarding this project.
 
 Due to the fact that this project is a short technical challenge, I decided that the best approach for the structure, as well as the logic, will be to keep it as simple as possible. That way, it would be easy to debug, test, and understand.
 
+```bash
 App
 |-- CreditContainer
 |   |-- CreditSlider (monto total)
@@ -61,7 +60,7 @@ App
 |   |-- ModalCredit
 |   |-- ModalPaymentDetails
 
-
+```
 
 - Components: There is a main (`app.tsx`) component, where the content as well as the "modals" will be presented. There is no context or global state; all the state is handled with local `useState`. All the events are handled with simple functions, and the communication between parent and child components is handled by functions as props.
 
